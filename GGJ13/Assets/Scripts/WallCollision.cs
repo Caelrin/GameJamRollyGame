@@ -3,30 +3,39 @@ using System.Collections;
 
 public class WallCollision : MonoBehaviour
 {
-
-    public float velocity_set;
     public bool bounce_back;
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision detected");
+        Collider collider = collision.collider;
 
-        if (other.gameObject.name == "Player")
+        if (collider.gameObject.name == "Player")
         {
-            Debug.Log("Collision in velocity zeroed");
-
-            if (bounce_back)
+			Vector3 origin = new Vector3(0,0,0);
+			Vector3 normal = new Vector3(0,0,0);
+			int length = collision.contacts.Length;
+			foreach (ContactPoint contact in collision.contacts) {
+				origin += contact.point/length;
+				normal += contact.normal/length;
+	        }
+			
+			if (bounce_back)
             {
-                Vector3 temp = other.GetComponent<Movement>().getVelocity();
-                other.GetComponent<Movement>().velocity = -temp/2;
+                Vector3 temp = collider.GetComponent<Movement>().getVelocity();
+				Vector3 velNormal = temp.normalized;
+				float mag = temp.magnitude;
+				Vector3 afterBounceVector = (velNormal - (2 * normal)).normalized * mag/2;
+                collider.GetComponent<Movement>().velocity = afterBounceVector;
+				collider.GetComponent<Transform>().localPosition -= normal * .1f;
             }
             else
             {
-
-                other.GetComponent<Movement>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
+                collider.GetComponent<Movement>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
             }
         }
 
 
     }
+	
+	
 }

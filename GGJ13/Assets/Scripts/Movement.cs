@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     public GameObject main_camera;
     public float movespeed;
     public Vector3 velocity = new Vector3(0,0,0);
+	public float ballSize;
 	// Use this for initialization
 	void Start () {
 	
@@ -38,8 +39,10 @@ public class Movement : MonoBehaviour
         {
            scaleBall();
         }
-
-	    
+		
+		float modulation = Mathf.Sin(Time.time * 10) / 3;
+		float diameter = ballSize + modulation;
+	    player.transform.localScale = new Vector3(diameter, diameter, diameter);
 	    player.transform.localPosition += velocity;
     }
 
@@ -50,8 +53,8 @@ public class Movement : MonoBehaviour
 
     public void scaleBall()
     {
-        if (player.transform.localScale.x > .01f) {
-            player.transform.localScale -= new Vector3(.25f, .25f, .25f);
+        if (ballSize > 2f) {
+            ballSize -= .05f;
         }
 
     }

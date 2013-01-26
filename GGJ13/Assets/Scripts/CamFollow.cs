@@ -24,7 +24,7 @@ public class CamFollow : MonoBehaviour
     		moveVector.z = -30 - diffVector.z;
     	}
 		if(diffVector.z < -100) {
-    		moveVector.z *= -2;
+    		moveVector.z *= 2;
     	}
 		if(diffVector.x < -50 || diffVector.z < 50) {
     		moveVector.x *= 2 ;

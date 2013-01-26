@@ -6,15 +6,16 @@ public class Movement : MonoBehaviour
 
     public GameObject player;
     public GameObject main_camera;
+    public GameObject score_obj;
     public float movespeed;
     public Vector3 velocity = new Vector3(0,0,0);
 	public float ballSize;
-	// Use this for initialization
+	public float gravity;
+
 	void Start () {
-	
+		gravity = .05f;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
         if (Input.GetKey(KeyCode.D))
@@ -40,11 +41,19 @@ public class Movement : MonoBehaviour
            scaleBall();
         }
 		
+		
+		if(velocity.y <= 0.5 ) {
+			velocity *= .995f;
+		}
+		
+		velocity.y -= gravity;
+		
 		float modulation = Mathf.Sin(Time.time * 10) / 3;
-		float diameter = ballSize + modulation;
+		float diameter = ballSize;// + modulation;
 	    player.transform.localScale = new Vector3(diameter, diameter, diameter);
 	    player.transform.localPosition += velocity;
-    }
+	    
+	}
 
     public Vector3 getVelocity()
     {
@@ -55,6 +64,8 @@ public class Movement : MonoBehaviour
     {
         if (ballSize > 2f) {
             ballSize -= .05f;
+            player.transform.localPosition += new Vector3(0,-.05f,0);
+            
         }
 
     }

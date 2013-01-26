@@ -49,7 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CamFollow.cs" />
+    <Compile Include="Assets\Scripts\CountDown.cs" />
+    <Compile Include="Assets\Scripts\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\PlayerScore.cs" />
+    <Compile Include="Assets\Scripts\PointAdd.cs" />
+    <Compile Include="Assets\Scripts\ScoreValue.cs" />
     <Compile Include="Assets\Scripts\WallCollision.cs" />
     <Compile Include="Assets\Scripts\test.cs" />
     <Reference Include="Library\ScriptAssemblies\Assembly-UnityScript-firstpass">

@@ -4,7 +4,6 @@ using System.Collections;
 public class FloorCollision : MonoBehaviour
 {
 
-    public float mag;
 	void OnCollisionEnter(Collision collision)
     {
 		Collide (collision);
@@ -32,13 +31,14 @@ public class FloorCollision : MonoBehaviour
 			
 			Vector3 temp = collider.GetComponent<Movement>().getVelocity();
 			Vector3 velNormal = temp.normalized;
+			float mag = .25f;
 			Vector3 afterBounceVector = new Vector3();
 			afterBounceVector.y = temp.y + (normal.y * temp.y) + (temp.x * normal.x) + (temp.z * normal.z);
 			afterBounceVector.x = temp.x - (normal.x * mag);
 			afterBounceVector.z = temp.z - (normal.z * mag);
 
 			collider.GetComponent<Movement>().velocity = afterBounceVector;
-			Debug.Log ("After bounce Vector" + afterBounceVector);
+			
 			Vector3 diffToPos = (Vector3.Scale(collider.GetComponent<Transform>().localScale /2, normal));
 			Vector3 onObjectPos = origin - diffToPos;
 			

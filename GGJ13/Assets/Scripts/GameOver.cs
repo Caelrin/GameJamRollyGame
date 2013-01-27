@@ -39,10 +39,12 @@ public class GameOver : MonoBehaviour {
 	public void EndGame() {
 		//if(isGameOver = false) {
 			GameObject timer = GameObject.FindGameObjectWithTag("Timer");
-			timer.gameObject.SetActive(false);
+            timer.SetActiveRecursively(false);
+			//timer.gameObject.SetActive(false);
 			GameObject score = GameObject.FindGameObjectWithTag("Score");
 			scoreAtGameEnd = score.GetComponent<PlayerScore>().GetScore();
-			score.gameObject.SetActive(false);
+            score.SetActiveRecursively(false);
+			//score.gameObject.SetActive(false);
 			finalScore.text = "Game Over\nTotalScore: " + ((int)scoreAtGameEnd).ToString();
 			isGameOver = true;
 			fadeBegin =  true;

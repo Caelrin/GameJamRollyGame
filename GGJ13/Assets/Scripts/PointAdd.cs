@@ -11,9 +11,15 @@ public class PointAdd : MonoBehaviour
 	{
 	    if (other.gameObject.name == "Points")
 	    {
-	        other.GetComponent<MeshRenderer>().material = scored_mat;
+	        if (!other.gameObject.GetComponent<ScoreValue>().score_calc)
+	        {
+	            other.GetComponent<MeshRenderer>().material = scored_mat;
 
-            if(other.GetComponent<ScoreValue>())
+	            GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>().PlayOneShot(
+	                GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundFXHandler>().clear);
+
+	        }
+	        if(other.GetComponent<ScoreValue>())
             {
                 score_valueL = other.GetComponent<ScoreValue>().score_value;
                 if (!other.GetComponent<ScoreValue>().score_calc)
@@ -34,6 +40,8 @@ public class PointAdd : MonoBehaviour
 					{
 					    GameObject.FindGameObjectWithTag("Gate").animation["open"].speed = 1.0f;
 						GameObject.FindGameObjectWithTag("Gate").animation.Play();
+                        GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>().PlayOneShot(
+                            GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundFXHandler>().nextLVL);
 					}
                 }
             }

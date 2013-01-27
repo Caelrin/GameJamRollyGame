@@ -23,8 +23,11 @@ public class LevelLoader : MonoBehaviour
 
    public void LoadLevel() {
 
-        level_index++;
-        cur_level.SetActiveRecursively(false);
+       if (level_list.Count > level_index+1)
+       {
+           level_index++;
+       }
+       cur_level.SetActiveRecursively(false);
         level_list[level_index].SetActiveRecursively(true);
         cur_level = level_list[level_index];
        Debug.Log("MOVE PLAYER");

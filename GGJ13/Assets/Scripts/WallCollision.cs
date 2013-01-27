@@ -4,6 +4,7 @@ using System.Collections;
 public class WallCollision : MonoBehaviour
 {
     public bool bounce_back;
+	
 
     void OnCollisionEnter(Collision collision)
     {
@@ -19,19 +20,24 @@ public class WallCollision : MonoBehaviour
 				normal += contact.normal/length;
 	        }
 			
-			if (bounce_back)
-            {
-                Vector3 temp = collider.GetComponent<Movement>().getVelocity();
-				Vector3 velNormal = temp.normalized;
-				float mag = temp.magnitude;
-				Vector3 afterBounceVector = (velNormal - (2 * normal)).normalized * mag/2;
-                collider.GetComponent<Movement>().velocity = afterBounceVector;
-				collider.GetComponent<Transform>().localPosition -= normal * .1f;
-            }
-            else
-            {
-                collider.GetComponent<Movement>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
-            }
+			float mag = 1.5f;
+			
+			Vector3 playerVelocity = collider.GetComponent<Movement>().getVelocity();
+			Vector3 velNormal = playerVelocity.normalized;
+			Vector3 afterHitVelocity = new Vector3();
+			afterHitVelocity.y = (velNormal.y - (2 * normal.y)) * mag;//playerVelocity.y + (normal.y * playerVelocity.y) + (playerVelocity.x * normal.x) + (playerVelocity.z * normal.z);
+			afterHitVelocity.x = (velNormal.x - (2 * normal.x)) * mag;
+			afterHitVelocity.z = (velNormal.z - (2 * normal.z)) * mag;
+			
+			collider.GetComponent<Movement>().velocity = afterHitVelocity;
+			
+			Vector3 diffToPos = (Vector3.Scale(collider.GetComponent<Transform>().localScale /2, normal));
+			Vector3 onObjectPos = origin - diffToPos;
+			collider.GetComponent<Movement>().position = onObjectPos;
+			float modulation = collider.GetComponent<Movement>().modulation/2;
+			collider.GetComponent<Transform>().localPosition = onObjectPos + 
+				Vector3.Scale(new Vector3(modulation,modulation,modulation), normal);	
+            
         }
 
 

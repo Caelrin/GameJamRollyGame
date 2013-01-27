@@ -37,17 +37,15 @@ public class GameOver : MonoBehaviour {
 	}
 	
 	public void EndGame() {
-		//if(isGameOver = false) {
+		if(isGameOver == false) {
 			GameObject timer = GameObject.FindGameObjectWithTag("Timer");
-            timer.SetActiveRecursively(false);
-			//timer.gameObject.SetActive(false);
+			timer.gameObject.SetActive(false);
 			GameObject score = GameObject.FindGameObjectWithTag("Score");
 			scoreAtGameEnd = score.GetComponent<PlayerScore>().GetScore();
-            score.SetActiveRecursively(false);
-			//score.gameObject.SetActive(false);
+			score.GetComponent<PlayerScore>().HideScore();
 			finalScore.text = "Game Over\nTotalScore: " + ((int)scoreAtGameEnd).ToString();
 			isGameOver = true;
 			fadeBegin =  true;
-		//}
+		}
 	}
 }

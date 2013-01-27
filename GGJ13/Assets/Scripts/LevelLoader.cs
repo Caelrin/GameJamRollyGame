@@ -30,7 +30,6 @@ public class LevelLoader : MonoBehaviour
        cur_level.SetActiveRecursively(false);
         level_list[level_index].SetActiveRecursively(true);
         cur_level = level_list[level_index];
-       Debug.Log("MOVE PLAYER");
        player.GetComponent<Movement>().resetPOS(startPOS);
 
        GameObject.FindGameObjectWithTag("Gate").animation["open"].speed = -1.0f;

@@ -21,7 +21,6 @@ public class LevelTrigger : MonoBehaviour
         {
 			bool levelComplete = LevelHelper.IsLevelComplete();
 			if(levelComplete &! fadeBegin) {
-                Debug.Log("LOAD NEXT LEVEL");
 				fadeBegin = true;
 				GameObject timer = GameObject.FindGameObjectWithTag("Timer");
 				timer.GetComponent<CountDown>().AddTime(15);
@@ -34,7 +33,6 @@ public class LevelTrigger : MonoBehaviour
     void Update()
     {
         if (fadeBegin) {
-            Debug.Log("faded STARTED");
             fade.gameObject.SetActiveRecursively(true);
             fade.color += new Color(0, 0, 0, faderate * Time.deltaTime);
             if (fade.color.a > .9) {

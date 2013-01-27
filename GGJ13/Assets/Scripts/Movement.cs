@@ -16,7 +16,7 @@ public class Movement : MonoBehaviour
 	public bool hasControl;
 
 	void Start () {
-		gravity = .05f;
+		gravity = .1f;
 		modulation = 0f;
 		position = player.transform.localPosition;
 		hasControl = true;
@@ -26,7 +26,6 @@ public class Movement : MonoBehaviour
 		modulation = Mathf.Sin(Time.time * 10) / 3;
 		float diameter = ballSize + modulation;
 		
-		Debug.Log("Has Control" + hasControl);
 		if(hasControl) {
 			if (Input.GetKey(KeyCode.D))
 	        {
@@ -50,27 +49,26 @@ public class Movement : MonoBehaviour
 				velocity *= .995f;
 			}
 			
-			velocity.y -= gravity;
-
-            position += velocity;
-
-		    
+			RaycastHit hit;
+			if(Physics.Linecast(position, position - new Vector3(0, diameter + gravity, 0), out hit)) {
+				if(hit.collider.gameObject.name == "floor") {
+					velocity = CollisionHelper.GetVelocityAfterCollision(hit.normal * -1, velocity);	
+				} else {
+					velocity.y -= gravity;
+				}
+			} else {
+				velocity.y -= gravity;
+			}
+			
+				
+			
+		    position += velocity;
 		}
 		
-		
-        //if (Input.GetKey(KeyCode.E))
-        //{
-        //   //scaleBall();
-
-        //}
-		
 		player.transform.localScale = new Vector3(diameter, diameter, diameter);
-		MoveToCurrentPost();
+		player.transform.localPosition = position - new Vector3(0, modulation, 0);
 	}
-	
-	private void MoveToCurrentPost() {
-		player.transform.localPosition = position - new Vector3(0, modulation/2, 0);
-	}
+
 
     public Vector3 getVelocity()
     {
@@ -80,7 +78,7 @@ public class Movement : MonoBehaviour
     public void resetPOS(Vector3 startPOS)
     {
         position = startPOS;
-        velocity = new Vector3(0,0,0);
+  		velocity = new Vector3(0,0,0);
     }
 
     public IEnumerator DelayPOS(Vector3 startPOS)

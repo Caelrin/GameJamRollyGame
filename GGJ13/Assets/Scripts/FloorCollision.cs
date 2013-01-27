@@ -3,7 +3,6 @@ using System.Collections;
 
 public class FloorCollision : MonoBehaviour
 {
-
 	void OnCollisionEnter(Collision collision)
     {
 		Collide (collision);
@@ -28,25 +27,21 @@ public class FloorCollision : MonoBehaviour
 				normal += contact.normal/length;
 			}
 			
-			
 			Vector3 temp = collider.GetComponent<Movement>().getVelocity();
-			Vector3 velNormal = temp.normalized;
-			float mag = .25f;
-			Vector3 afterBounceVector = new Vector3();
-			afterBounceVector.y = temp.y + (normal.y * temp.y) + (temp.x * normal.x) + (temp.z * normal.z);
-			afterBounceVector.x = temp.x - (normal.x * mag);
-			afterBounceVector.z = temp.z - (normal.z * mag);
+			Vector3 afterHitVelocity = CollisionHelper.GetVelocityAfterCollision (normal, temp);
 
-			collider.GetComponent<Movement>().velocity = afterBounceVector;
+			collider.GetComponent<Movement>().velocity = afterHitVelocity;
 			
 			Vector3 diffToPos = (Vector3.Scale(collider.GetComponent<Transform>().localScale /2, normal));
 			Vector3 onObjectPos = origin - diffToPos;
 			
 			if(onObjectPos.y > collider.GetComponent<Movement>().position.y) {
 				collider.GetComponent<Movement>().position = onObjectPos;
-				collider.GetComponent<Transform>().localPosition = onObjectPos - 
-					new Vector3(0,collider.GetComponent<Movement>().modulation/2,0);	
+				collider.GetComponent<Transform>().localPosition = onObjectPos
+					+ new Vector3(0,collider.GetComponent<Movement>().modulation/2,0);	
 			}
 		}
 	}
+
+	
 }

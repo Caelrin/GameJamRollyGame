@@ -28,7 +28,6 @@ public class PointAdd : MonoBehaviour
                     other.GetComponent<ScoreValue>().score_calc = true;
 					
 					bool levelComplete = true;
-                    Debug.Log(levelComplete);
 
 					GameObject[] pointsInLevel = GameObject.FindGameObjectsWithTag ("Point");
 					foreach(GameObject point in pointsInLevel) {

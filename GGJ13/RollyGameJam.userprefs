@@ -1,0 +1,27 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CamFollow.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Movement.cs" Line="55" Column="86" />
+      <File FileName="Assets\Scripts\WallCollision.cs" Line="23" Column="19" />
+      <File FileName="Assets\Scripts\CollisionHelper.cs" Line="6" Column="2" />
+      <File FileName="Assets\Scripts\FloorCollision.cs" Line="41" Column="68" />
+      <File FileName="Assets\Scripts\CamFollow.cs" Line="20" Column="13" />
+      <File FileName="Assets\Scripts\CountDown.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameOver.cs" Line="45" Column="50" />
+      <File FileName="Assets\Scripts\LevelHelper.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelLoader.cs" Line="32" Column="45" />
+      <File FileName="Assets\Scripts\LevelTrigger.cs" Line="35" Column="25" />
+      <File FileName="Assets\Scripts\ObjectMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerScore.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PointAdd.cs" Line="30" Column="32" />
+      <File FileName="Assets\Scripts\ScoreValue.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SoundFXHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\test.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-public class FloorCollision : MonoBehaviour {
+public class FloorCollision : MonoBehaviour
+{
 
+    public float mag;
 	void OnCollisionEnter(Collision collision)
     {
 		Collide (collision);
@@ -30,7 +32,7 @@ public class FloorCollision : MonoBehaviour {
 			
 			Vector3 temp = collider.GetComponent<Movement>().getVelocity();
 			Vector3 velNormal = temp.normalized;
-			float mag = 1f;
+			//float mag = .25f;
 			Vector3 afterBounceVector = new Vector3();
 			afterBounceVector.y = temp.y + (normal.y * temp.y) + (temp.x * normal.x) + (temp.z * normal.z);
 			afterBounceVector.x = temp.x - (normal.x * mag);

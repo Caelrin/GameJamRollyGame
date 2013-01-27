@@ -5,7 +5,6 @@ public class PointAdd : MonoBehaviour
 {
 
     public Material scored_mat;
-    public GameObject score_object;
     public int score_valueL;
 
 	void OnTriggerEnter(Collider other)
@@ -19,8 +18,19 @@ public class PointAdd : MonoBehaviour
                 score_valueL = other.GetComponent<ScoreValue>().score_value;
                 if (!other.GetComponent<ScoreValue>().score_calc)
                 {
-                    score_object.GetComponent<PlayerScore>().AddPoints(score_valueL);
+                    GameObject.FindGameObjectWithTag("Score").GetComponent<PlayerScore>().AddPoints(score_valueL);
                     other.GetComponent<ScoreValue>().score_calc = true;
+					
+					bool levelComplete = true;
+					GameObject[] pointsInLevel = GameObject.FindGameObjectsWithTag ("Point");
+					foreach(GameObject point in pointsInLevel) {
+						if(! point.GetComponent<ScoreValue>().score_calc) {
+							levelComplete = false;
+						}
+					}
+					if(levelComplete) {
+						GameObject.FindGameObjectWithTag("Gate").animation.Play();
+					}
                 }
             }
 	    }

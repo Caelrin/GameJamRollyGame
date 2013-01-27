@@ -19,11 +19,6 @@ public class LevelLoader : MonoBehaviour
 
     void Update() {
         
-        if (score_obj.GetComponent<PlayerScore>().score > 30)
-        {
-
-            //LoadLevel();
-        }
 
 
     }

@@ -8,6 +8,7 @@ public class LevelTrigger : MonoBehaviour
     public float faderate = .025f;
     public bool fadeBegin = false;
     public bool fadeOut = false;
+    public GameObject level_loader;
 
     void Start()
     {
@@ -19,7 +20,10 @@ public class LevelTrigger : MonoBehaviour
         {
 			bool levelComplete = LevelHelper.IsLevelComplete();
 			if(levelComplete) {
+                Debug.Log("LOAD NEXT LEVEL");
 				fadeBegin = true;   
+                level_loader.GetComponent<LevelLoader>().LoadLevel();
+
 			}
 				
         }
@@ -28,6 +32,7 @@ public class LevelTrigger : MonoBehaviour
     void Update()
     {
         if (fadeBegin) {
+            Debug.Log("faded STARTED");
             fade.gameObject.SetActiveRecursively(true);
             fade.color += new Color(0, 0, 0, faderate * Time.deltaTime);
             if (fade.color.a > .9) {

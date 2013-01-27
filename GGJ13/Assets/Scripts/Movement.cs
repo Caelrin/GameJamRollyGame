@@ -11,9 +11,13 @@ public class Movement : MonoBehaviour
     public Vector3 velocity = new Vector3(0,0,0);
 	public float ballSize;
 	public float gravity;
+	public float modulation;
+	public Vector3 position;
 
 	void Start () {
 		gravity = .05f;
+		modulation = 0f;
+		position = player.transform.localPosition;
 	}
 	
 	void Update () {
@@ -48,10 +52,11 @@ public class Movement : MonoBehaviour
 		
 		velocity.y -= gravity;
 		
-		float modulation = Mathf.Sin(Time.time * 10) / 3;
-		float diameter = ballSize;// + modulation;
+		modulation = Mathf.Sin(Time.time * 10) / 3;
+		float diameter = ballSize + modulation;
 	    player.transform.localScale = new Vector3(diameter, diameter, diameter);
-	    player.transform.localPosition += velocity;
+	    position += velocity;
+		player.transform.localPosition = position - new Vector3(0, modulation, 0);
 	    
 	}
 

@@ -5,7 +5,7 @@ public class PlayerScore : MonoBehaviour {
 
     public GUIText gui_score;
     public GameObject Level_obj;
-    public int score;
+    public float score;
     private float xOffset = 20.0f;
 	// Use this for initialization
 	void Start ()
@@ -16,10 +16,10 @@ public class PlayerScore : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    gui_score.text = score.ToString();
+	    gui_score.text = ((int)score).ToString();
 	}
 
-    public void AddPoints(int points) {
+    public void AddPoints(float points) {
         score += points;
         
     }

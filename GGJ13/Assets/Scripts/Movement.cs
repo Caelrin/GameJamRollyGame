@@ -56,7 +56,7 @@ public class Movement : MonoBehaviour
 		float diameter = ballSize + modulation;
 	    player.transform.localScale = new Vector3(diameter, diameter, diameter);
 	    position += velocity;
-		player.transform.localPosition = position - new Vector3(0, modulation, 0);
+		player.transform.localPosition = position - new Vector3(0, modulation/2, 0);
 	    
 	}
 

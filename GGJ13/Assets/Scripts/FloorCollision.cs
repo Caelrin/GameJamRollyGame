@@ -46,7 +46,7 @@ public class FloorCollision : MonoBehaviour
 			if(onObjectPos.y > collider.GetComponent<Movement>().position.y) {
 				collider.GetComponent<Movement>().position = onObjectPos;
 				collider.GetComponent<Transform>().localPosition = onObjectPos - 
-					new Vector3(0,collider.GetComponent<Movement>().modulation,0);	
+					new Vector3(0,collider.GetComponent<Movement>().modulation/2,0);	
 			}
 		}
 	}

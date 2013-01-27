@@ -10,7 +10,7 @@ public class CamFollow : MonoBehaviour
     void Update()
     {
 		Vector3 diffVector = transform.position - 
-			(target.GetComponent<Transform>().position - new Vector3(0, target.GetComponent<Movement>().modulation, 0));
+			(target.GetComponent<Transform>().position + new Vector3(0, target.GetComponent<Movement>().modulation/2, 0));
 		Vector3 moveVector = (new Vector3(0, 30, -50) - diffVector) / 30;
 		CapCameraBound (diffVector, ref moveVector);
 		transform.position += moveVector;

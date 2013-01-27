@@ -9,6 +9,7 @@ public class LevelTrigger : MonoBehaviour
     public bool fadeBegin = false;
     public bool fadeOut = false;
     public GameObject level_loader;
+	public GameObject player;
 
     void Start()
     {
@@ -25,7 +26,7 @@ public class LevelTrigger : MonoBehaviour
 				GameObject timer = GameObject.FindGameObjectWithTag("Timer");
 				timer.GetComponent<CountDown>().AddTime(15);
                 level_loader.GetComponent<LevelLoader>().LoadLevel();
-
+				player.GetComponent<Movement>().hasControl = false;
 			}
 				
         }
@@ -44,6 +45,7 @@ public class LevelTrigger : MonoBehaviour
         } else if (fadeOut) {
             fade.color -= new Color(0,0,0, faderate * Time.deltaTime);
 			if(fade.color.a <= 0f) {
+				player.GetComponent<Movement>().hasControl = true;
 				fadeOut = false;
 			}
         }

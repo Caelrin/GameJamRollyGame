@@ -22,13 +22,17 @@ public class PointAdd : MonoBehaviour
                     other.GetComponent<ScoreValue>().score_calc = true;
 					
 					bool levelComplete = true;
+                    Debug.Log(levelComplete);
+
 					GameObject[] pointsInLevel = GameObject.FindGameObjectsWithTag ("Point");
 					foreach(GameObject point in pointsInLevel) {
 						if(! point.GetComponent<ScoreValue>().score_calc) {
 							levelComplete = false;
 						}
 					}
-					if(levelComplete) {
+					if(levelComplete)
+					{
+					    GameObject.FindGameObjectWithTag("Gate").animation["open"].speed = 1.0f;
 						GameObject.FindGameObjectWithTag("Gate").animation.Play();
 					}
                 }

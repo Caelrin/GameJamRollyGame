@@ -23,4 +23,8 @@ public class PlayerScore : MonoBehaviour {
         score += points;
         
     }
+	
+	public float GetScore() {
+		return score;
+	}
 }

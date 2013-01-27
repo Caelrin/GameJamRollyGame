@@ -7,6 +7,7 @@ public class CountDown : MonoBehaviour
     public GUIText countDown;
     private float xOffset = 20.0f;
     public float seconds = 70;
+	public GameOver gameOver;
 
     void Start() {
 
@@ -21,6 +22,7 @@ public class CountDown : MonoBehaviour
         }
         if (seconds <= 0) {
             seconds = 0.0f;
+			gameOver.EndGame();
         }
 
         float renderMin = ((int)seconds / 60);

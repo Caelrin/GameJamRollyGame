@@ -25,7 +25,6 @@ public class LevelTrigger : MonoBehaviour
 				fadeBegin = true;
 				GameObject timer = GameObject.FindGameObjectWithTag("Timer");
 				timer.GetComponent<CountDown>().AddTime(15);
-                level_loader.GetComponent<LevelLoader>().LoadLevel();
 				player.GetComponent<Movement>().hasControl = false;
 			}
 				
@@ -39,6 +38,7 @@ public class LevelTrigger : MonoBehaviour
             fade.gameObject.SetActiveRecursively(true);
             fade.color += new Color(0, 0, 0, faderate * Time.deltaTime);
             if (fade.color.a > .9) {
+				level_loader.GetComponent<LevelLoader>().LoadLevel();
                 fadeOut = true;                
 				fadeBegin = false;
             }

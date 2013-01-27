@@ -26,8 +26,7 @@ public class Movement : MonoBehaviour
 		modulation = Mathf.Sin(Time.time * 10) / 3;
 		float diameter = ballSize + modulation;
 		
-		Debug.Log("Has Control" + hasControl);
-		//if(hasControl) {
+		if(hasControl) {
 			if (Input.GetKey(KeyCode.D))
 	        {
 	           velocity += new Vector3(movespeed*Time.deltaTime, 0, 0);
@@ -51,10 +50,10 @@ public class Movement : MonoBehaviour
 			}
 			
 			velocity.y -= gravity;
-		    
-		//}
+		    position += velocity;
+		}
 		
-		position += velocity;
+		
 		
         if (Input.GetKey(KeyCode.E))
         {
@@ -66,12 +65,9 @@ public class Movement : MonoBehaviour
         }
 		
 		player.transform.localScale = new Vector3(diameter, diameter, diameter);
-		MoveToCurrentPost();
+		player.transform.localPosition = position - new Vector3(0, modulation, 0);
 	}
-	
-	private void MoveToCurrentPost() {
-		player.transform.localPosition = position - new Vector3(0, modulation/2, 0);
-	}
+
 
     public Vector3 getVelocity()
     {
@@ -81,7 +77,7 @@ public class Movement : MonoBehaviour
     public void resetPOS(Vector3 startPOS)
     {
         position = startPOS;
-        MoveToCurrentPost();
+  		velocity = new Vector3(0,0,0);
     }
 
     public IEnumerator DelayPOS(Vector3 startPOS)

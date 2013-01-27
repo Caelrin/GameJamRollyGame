@@ -15,11 +15,11 @@ public class CountDown : MonoBehaviour
     }
 
     void Update() {
-        if (seconds > 0.25) {
+        if (seconds > 0) {
             seconds -= (1*Time.deltaTime);
 
         }
-        if (seconds < 0.25) {
+        if (seconds <= 0) {
             seconds = 0.0f;
         }
 
@@ -37,6 +37,6 @@ public class CountDown : MonoBehaviour
     }
 	
 	public void AddTime(int numSeconds) {
-		seconds += 15;
+		seconds += numSeconds;
 	}
 }

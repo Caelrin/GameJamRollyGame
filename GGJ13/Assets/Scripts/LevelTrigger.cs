@@ -19,9 +19,11 @@ public class LevelTrigger : MonoBehaviour
         if (other.gameObject.name == "Player")
         {
 			bool levelComplete = LevelHelper.IsLevelComplete();
-			if(levelComplete) {
+			if(levelComplete &! fadeBegin) {
                 Debug.Log("LOAD NEXT LEVEL");
-				fadeBegin = true;   
+				fadeBegin = true;
+				GameObject timer = GameObject.FindGameObjectWithTag("Timer");
+				timer.GetComponent<CountDown>().AddTime(15);
                 level_loader.GetComponent<LevelLoader>().LoadLevel();
 
 			}

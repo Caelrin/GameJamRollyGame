@@ -6,8 +6,7 @@ public class CountDown : MonoBehaviour
 
     public GUIText countDown;
     private float xOffset = 20.0f;
-    public float mins = 1;
-    public float seconds = 5;
+    public float seconds = 70;
 
     void Start() {
 
@@ -24,19 +23,20 @@ public class CountDown : MonoBehaviour
             seconds = 0.0f;
         }
 
-        if (seconds == 0 && mins > 0) {
-            mins = 0;
-            seconds = 60;
-        }
-
-        if (seconds < 9.5)
+        float renderMin = ((int)seconds / 60);
+		float renderSeconds = seconds % 60;
+        if (renderSeconds < 9.5)
         {
-            countDown.text = mins.ToString() + " : 0" + seconds.ToString("F0");
+            countDown.text = renderMin.ToString() + " : 0" + renderSeconds.ToString("F0");
         }
         else
         {
-            countDown.text = mins.ToString() + " : " + seconds.ToString("F0");
+            countDown.text = renderMin.ToString() + " : " + renderSeconds.ToString("F0");
         }
 
     }
+	
+	public void AddTime(int numSeconds) {
+		seconds += 15;
+	}
 }
